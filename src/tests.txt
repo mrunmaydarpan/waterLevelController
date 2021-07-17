@@ -1,0 +1,17 @@
+............UNO............
+
+$maxDistance:115
+$minDistance:25
+$startAt:40
+$readData:1
+$Pump:1
+$wifi:0
+
+............ESP............
+
+$Level:15
+$Pump:1
+$Distance:77
+$Mode:0
+$System:0
+$ready:1
