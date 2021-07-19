@@ -1,0 +1,66 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
+{
+    "configurations": [
+        {
+            "name": "PlatformIO",
+            "includePath": [
+                "/home/mdtronix/Documents/waterLevelController/include",
+                "/home/mdtronix/Documents/waterLevelController/src",
+                "/home/mdtronix/Documents/waterLevelController/.pio/libdeps/uno/Ultrasonic_ID1507/src",
+                "/home/mdtronix/Documents/waterLevelController/.pio/libdeps/uno/Timer",
+                "/home/mdtronix/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                "/home/mdtronix/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                "/home/mdtronix/Documents/waterLevelController/.pio/libdeps/uno/Smoothed/src",
+                "/home/mdtronix/Documents/waterLevelController/.pio/libdeps/uno/JC_Button/src",
+                "/home/mdtronix/Documents/waterLevelController/.pio/libdeps/uno/LiquidCrystal_I2C",
+                "/home/mdtronix/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                "/home/mdtronix/.platformio/packages/framework-arduino-avr/cores/arduino",
+                "/home/mdtronix/.platformio/packages/framework-arduino-avr/variants/standard",
+                "/home/mdtronix/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                "/home/mdtronix/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                ""
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "/home/mdtronix/Documents/waterLevelController/include",
+                    "/home/mdtronix/Documents/waterLevelController/src",
+                    "/home/mdtronix/Documents/waterLevelController/.pio/libdeps/uno/Ultrasonic_ID1507/src",
+                    "/home/mdtronix/Documents/waterLevelController/.pio/libdeps/uno/Timer",
+                    "/home/mdtronix/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                    "/home/mdtronix/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                    "/home/mdtronix/Documents/waterLevelController/.pio/libdeps/uno/Smoothed/src",
+                    "/home/mdtronix/Documents/waterLevelController/.pio/libdeps/uno/JC_Button/src",
+                    "/home/mdtronix/Documents/waterLevelController/.pio/libdeps/uno/LiquidCrystal_I2C",
+                    "/home/mdtronix/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                    "/home/mdtronix/.platformio/packages/framework-arduino-avr/cores/arduino",
+                    "/home/mdtronix/.platformio/packages/framework-arduino-avr/variants/standard",
+                    "/home/mdtronix/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                    "/home/mdtronix/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                    ""
+                ]
+            },
+            "defines": [
+                "PLATFORMIO=50101",
+                "ARDUINO_AVR_UNO",
+                "F_CPU=16000000L",
+                "ARDUINO_ARCH_AVR",
+                "ARDUINO=10808",
+                "__AVR_ATmega328P__",
+                ""
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "compilerPath": "/home/mdtronix/.platformio/packages/toolchain-atmelavr/bin/avr-gcc",
+            "compilerArgs": [
+                "-mmcu=atmega328p",
+                ""
+            ]
+        }
+    ],
+    "version": 4
+}
