@@ -3,7 +3,7 @@
 const char brand[] = "MDtronix";
 
 /*------------function setting-----------------*/
-#define sonar true
+#define sonar false
 #define DryRun false
 #define level_5 false
 /*---------------------------------------------*/
