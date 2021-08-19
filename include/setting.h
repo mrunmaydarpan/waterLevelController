@@ -1,4 +1,4 @@
-#define version "5.9e"
+#define version "5.9f"
 #define hardware "3.1"
 const char brand[] = "MDtronix";
 
