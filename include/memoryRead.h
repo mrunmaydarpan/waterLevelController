@@ -1,14 +1,13 @@
 void ReadMem()
 {
-    if (EEPROM.read(maxDistance_mem) > 250)
+    if (EEPROM.read(maxDistance_mem) > 250 || EEPROM.read(maxDistance_mem) == 0)
     {
         EEPROM.write(maxDistance_mem, 120);
     }
-    if (EEPROM.read(minDistance_mem) > EEPROM.read(maxDistance_mem))
+    if (EEPROM.read(minDistance_mem) > EEPROM.read(maxDistance_mem) || EEPROM.read(minDistance_mem) == 0)
     {
         EEPROM.write(minDistance_mem, 20);
     }
-
     if (EEPROM.read(manualOff_mem) > 1)
     {
         EEPROM.write(manualOff_mem, 0);

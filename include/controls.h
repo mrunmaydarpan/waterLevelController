@@ -144,6 +144,12 @@ void OneTimeRun()
                 lcd.print("ERROR");
             }
             EEPROM.write(1, 0);
+            ledBlink = t.oscillate(led, 500, HIGH);
+        }
+        else
+        {
+            t.stop(ledBlink);
+            Serial.println("Error State Stop");
         }
     }
     LasterrorCountState = errorCountState;

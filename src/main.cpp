@@ -10,6 +10,8 @@ uint8_t MotorStartThreshold_mem(4);
 uint8_t dryRun_LastDistance_mem(7);
 uint8_t STATOR_TYPE;
 uint8_t errorCount;
+uint8_t okCount;
+uint8_t ledBlink;
 int Distance, DistanceX;
 #if DryRun
 int dryRun_timer;

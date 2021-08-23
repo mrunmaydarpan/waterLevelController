@@ -13,15 +13,15 @@ void readSensor()
       value = valueX;
 #endif
    }
-   else if (DistanceX >= MaxDistance)
+   else if (Distance >= MaxDistance)
    {
       value = 0;
    }
-   else if (DistanceX <= MinDistance)
+   else if (Distance <= MinDistance)
    {
       value = 100;
    }
-   if (Distance == 0 || DistanceX >= MaxDistance + 10) //if Error
+   if (Distance == 0 || Distance >= MaxDistance + 10) //if Error
    {
       errorCount++;
       if (errorCount > 5)
@@ -30,12 +30,20 @@ void readSensor()
          errorCount = 1;
       }
    }
-   // else
-   // {
-   //    errorCount = 0;
-   //    if (DryRunState == false)
-   //       errorCountState = false;
-   // }
+//    else
+//    {
+//       okCount++;
+//       if (okCount >= 100)
+//       {
+//          errorCount = 0;
+//          errorCountState = false;
+//          okCount = 0;
+//       }
+// #if DryRun
+//       if (DryRunState == false)
+//          errorCountState = false;
+// #endif
+//    }
 #else
    do
    {
@@ -100,14 +108,14 @@ void readSensor()
       }
    }
 #endif
-   if (value < 0)
-   {
-      value = 0;
-   }
-   else if (value > 100)
-   {
-      value = 100;
-   }
+   // if (value < 0)
+   // {
+   //    value = 0;
+   // }
+   // else if (value > 100)
+   // {
+   //    value = 100;
+   // }
    if (value <= MotorStartThreshold && ManualOff == false && AutoMode == true && Distance != 0 && value <= 90)
    {
       PumpON_command();
