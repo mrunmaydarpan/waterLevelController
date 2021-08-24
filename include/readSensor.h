@@ -108,14 +108,14 @@ void readSensor()
       }
    }
 #endif
-   // if (value < 0)
-   // {
-   //    value = 0;
-   // }
-   // else if (value > 100)
-   // {
-   //    value = 100;
-   // }
+   if (value < 0)
+   {
+      value = 0;
+   }
+   else if (value > 100)
+   {
+      value = 100;
+   }
    if (value <= MotorStartThreshold && ManualOff == false && AutoMode == true && Distance != 0 && value <= 90)
    {
       PumpON_command();
