@@ -21,7 +21,6 @@
                 "/home/mrunmay/.platformio/packages/framework-arduino-avr/cores/arduino",
                 "/home/mrunmay/.platformio/packages/framework-arduino-avr/variants/standard",
                 "/home/mrunmay/Documents/waterLevelController/.pio/libdeps/uno/Ultrasonic_ID1507/src",
-                "/home/mrunmay/.platformio/lib/Timer",
                 "/home/mrunmay/.platformio/packages/framework-arduino-avr/libraries/HID/src",
                 "/home/mrunmay/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
                 ""
@@ -42,7 +41,6 @@
                     "/home/mrunmay/.platformio/packages/framework-arduino-avr/cores/arduino",
                     "/home/mrunmay/.platformio/packages/framework-arduino-avr/variants/standard",
                     "/home/mrunmay/Documents/waterLevelController/.pio/libdeps/uno/Ultrasonic_ID1507/src",
-                    "/home/mrunmay/.platformio/lib/Timer",
                     "/home/mrunmay/.platformio/packages/framework-arduino-avr/libraries/HID/src",
                     "/home/mrunmay/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
                     ""

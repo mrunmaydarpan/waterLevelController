@@ -24,7 +24,7 @@ void readSensor()
    if (Distance == 0 || Distance >= MaxDistance + 10) //if Error
    {
       errorCount++;
-      if (errorCount > 5)
+      if (errorCount > 20)
       {
          errorCountState = true;
          errorCount = 1;
