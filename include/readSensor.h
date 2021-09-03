@@ -90,7 +90,7 @@ void readSensor()
          {
             Serial.println("Below the lower limit");
             errorCount++;
-            if (errorCount > 5)
+            if (errorCount > 20)
             {
                errorCountState = true;
                errorCount = 1;
@@ -100,7 +100,7 @@ void readSensor()
       else // if errors
       {
          errorCount++;
-         if (errorCount > 5)
+         if (errorCount > 20)
          {
             errorCountState = true;
             errorCount = 1;
