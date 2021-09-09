@@ -8,7 +8,7 @@ const char brand[] = "MDtronix";
 #define level_5 false
 /*---------------------------------------------*/
 
-#define debugData true //default: true
+#define debugData true  //default: true
 #define wifi_test false //default: false
 
 #define on_delay 300

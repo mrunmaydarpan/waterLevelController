@@ -70,25 +70,25 @@ void buttonEvent()
     }
 }
 
-void selectorMode()
-{
-    pinMode(selector_1, INPUT_PULLUP);
-    pinMode(selector_2, INPUT_PULLUP);
-    pinMode(selector_3, INPUT_PULLUP);
+// void selectorMode()
+// {
+//     pinMode(selector_1, INPUT_PULLUP);
+//     pinMode(selector_2, INPUT_PULLUP);
+//     pinMode(selector_3, INPUT_PULLUP);
 
-    if (digitalRead(selector_1) == LOW)
-    {
-        STATOR_TYPE = 1; // Normal Mode
-    }
-    else if (digitalRead(selector_2) == LOW)
-    {
-        STATOR_TYPE = 2; // Stator Mode
-    }
-    else if (digitalRead(selector_3) == LOW)
-    {
-        STATOR_TYPE = 3;
-    }
-}
+//     if (digitalRead(selector_1) == LOW)
+//     {
+//         STATOR_TYPE = 1; // Normal Mode
+//     }
+//     else if (digitalRead(selector_2) == LOW)
+//     {
+//         STATOR_TYPE = 2; // Stator Mode
+//     }
+//     else if (digitalRead(selector_3) == LOW)
+//     {
+//         STATOR_TYPE = 3;
+//     }
+// }
 
 void OneTimeRun()
 {

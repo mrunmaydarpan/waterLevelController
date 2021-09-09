@@ -21,6 +21,10 @@ void ReadMem()
     {
         EEPROM.write(LastMotorState_mem, 0);
     }
+    if (EEPROM.read(StatorType_mem) == 0 || EEPROM.read(StatorType_mem) > 10)
+    {
+        EEPROM.write(StatorType_mem, 1);
+    }
     MotorStartThreshold = EEPROM.read(MotorStartThreshold_mem);
     ManualOff = EEPROM.read(manualOff_mem);
     MaxDistance = EEPROM.read(maxDistance_mem);
@@ -28,4 +32,5 @@ void ReadMem()
     MinDistance = EEPROM.read(minDistance_mem);
     LastMotorState = EEPROM.read(LastMotorState_mem);
     dryRun_LastDistance = EEPROM.read(dryRun_LastDistance_mem);
+    STATOR_TYPE = EEPROM.read(StatorType_mem);
 }

@@ -1,13 +1,17 @@
 #include <setting.h>
 
+#define motorState_mem 1
+#define maxDistance_mem 2
+#define minDistance_mem 3
+#define MotorStartThreshold_mem 4
+#define manualOff_mem 5
+#define LastMotorState_mem 6
+#define dryRun_LastDistance_mem 7
+#define StatorType_mem 8
+
 int MinDistance;
 int MotorStartThreshold;
 int MaxDistance, value, LastValue;
-uint8_t maxDistance_mem(2), minDistance_mem(3);
-uint8_t manualOff_mem(5);
-uint8_t motorState_mem(1), LastMotorState_mem(6);
-uint8_t MotorStartThreshold_mem(4);
-uint8_t dryRun_LastDistance_mem(7);
 uint8_t STATOR_TYPE;
 uint8_t errorCount;
 uint8_t okCount;
@@ -88,7 +92,6 @@ void setup()
   lcd.createChar(1, BlinkDown);
   lcd.createChar(2, ManualOff_char);
   lcd.createChar(3, network_icon);
-  selectorMode();
   StartUp();
 
   if (MotorState == true && ManualOff == false && AutoMode == true)

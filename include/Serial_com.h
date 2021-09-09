@@ -96,6 +96,12 @@ void parseCommand(String com)
                 Serial.println("WiFi Disconnected");
             }
         }
+        else if (part1.equals("$stator"))
+        {
+            int i = part2.toInt();
+            STATOR_TYPE = i;
+            EEPROM.write(StatorType_mem, i);
+        }
         else if (part1.equals(GET_SET))
         {
             Serial.println("get Code");
@@ -106,10 +112,9 @@ void parseCommand(String com)
     }
 }
 
-// beta version, uncomment in void loop()
 void setting()
 {
-    while (Setting.available())
+    while (Setting.available() || Serial.available())
     {
         char data = Setting.read();
         if (data == '\n')

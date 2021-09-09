@@ -45,15 +45,15 @@ void StartUp()
 #endif
     lcd.setCursor(15, 0);
     lcd.print(STATOR_TYPE);
-    while (digitalRead(selector_1) == HIGH &&
-           digitalRead(selector_2) == HIGH &&
-           digitalRead(selector_3) == HIGH)
-    {
-        lcd.setCursor(0, 0);
-        lcd.print("PUMP TYPE ERROR ");
-        lcd.setCursor(0, 1);
-        lcd.print("set pump type   ");
-    }
+    // while (digitalRead(selector_1) == HIGH &&
+    //        digitalRead(selector_2) == HIGH &&
+    //        digitalRead(selector_3) == HIGH)
+    // {
+    //     lcd.setCursor(0, 0);
+    //     lcd.print("PUMP TYPE ERROR ");
+    //     lcd.setCursor(0, 1);
+    //     lcd.print("set pump type   ");
+    // }
     delay(2000);
     lcd.clear();
     digitalWrite(led, LOW);
