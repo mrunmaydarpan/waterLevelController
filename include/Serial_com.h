@@ -101,6 +101,8 @@ void parseCommand(String com)
             int i = part2.toInt();
             STATOR_TYPE = i;
             EEPROM.write(StatorType_mem, i);
+            Serial.print("set stator: ");
+            Serial.println(i);
         }
         else if (part1.equals(GET_SET))
         {
@@ -108,15 +110,29 @@ void parseCommand(String com)
             Setting.println(GET_MIN + String(':') + String(MinDistance));
             Setting.println(GET_MAX + String(':') + String(MaxDistance));
             Setting.println(GET_THRESHOLD + String(':') + String(MotorStartThreshold));
+            Setting.println(GET_STATOR + String(':') + String(STATOR_TYPE));
         }
     }
 }
 
 void setting()
 {
-    while (Setting.available() || Serial.available())
+    while (Setting.available())
     {
         char data = Setting.read();
+        if (data == '\n')
+        {
+            parseCommand(Command);
+            Command = "";
+        }
+        else
+        {
+            Command += data;
+        }
+    }
+    while (Serial.available())
+    {
+        char data = Serial.read();
         if (data == '\n')
         {
             parseCommand(Command);

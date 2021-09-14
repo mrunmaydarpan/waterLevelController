@@ -9,3 +9,4 @@
 #define GET_THRESHOLD "$startAt"
 #define GET_DATA "$readData"
 #define GET_SET "$readSetting"
+#define GET_STATOR "$stator"

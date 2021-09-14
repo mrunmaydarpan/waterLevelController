@@ -6,7 +6,7 @@ $startAt:40
 $readData:1
 $Pump:1
 $wifi:0
-
+$stator:2
 ............ESP............
 
 $Level:15
