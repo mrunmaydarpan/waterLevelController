@@ -51,14 +51,14 @@ byte ManualOff_char[] = {
     0x0E,
     0x0E};
 byte network_icon[] = {
-    0x01,
-    0x1F,
-    0x11,
-    0x11,
-    0x1F,
-    0x1F,
-    0x1F,
-    0x1F};
+    0x00,
+    0x0A,
+    0x0B,
+    0x0A,
+    0x0A,
+    0x1A,
+    0x0A,
+    0x00};
 
 #include <headers.h>
 
@@ -76,8 +76,9 @@ void setup()
   pinMode(Relay_ON, OUTPUT);
   pinMode(Relay_OFF, OUTPUT);
   pinMode(led, OUTPUT);
-  pinMode(debug_led, OUTPUT);
-
+#if debug_led_state
+  pinMode(debug_led_pin, OUTPUT);
+#endif
   if (ManualOff == false && digitalRead(Mode) == LOW)
   {
     AutoMode = true;
@@ -96,7 +97,7 @@ void setup()
 
   if (MotorState == true && ManualOff == false && AutoMode == true)
   {
-    Serial.println("turning motor on");
+    debugln("turning motor on");
     LastMotorState = false;
     PumpON_command();
   }

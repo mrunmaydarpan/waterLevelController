@@ -15,7 +15,7 @@ void PumpOFF_command()
 
 void motor_on()
 {
-    tone(buzz, 4500, 500);
+    tone(buzz, 4500, 300);
     digitalWrite(led, HIGH);
     switch (STATOR_TYPE)
     {
@@ -60,13 +60,13 @@ void DRY_RUN_CHECK()
 {
     if (dryRun_LastDistance <= Distance)
     {
-        Serial.println("Dry run");
+        debugln("Dry run");
         DryRunState = true;
         errorCountState = true;
     }
     else if (dryRun_LastDistance > (Distance + 2))
     {
-        Serial.println("all ok");
+        debugln("all ok");
         dryRun_LastDistance = Distance;
         EEPROM.write(dryRun_LastDistance_mem, dryRun_LastDistance);
     }

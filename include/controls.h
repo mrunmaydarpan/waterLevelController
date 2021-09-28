@@ -12,20 +12,20 @@ void lcdDefault()
 
 void Debug()
 {
-    Serial.print("Lv:" + String(value));
-    Serial.print("|");
-    Serial.print(AutoMode ? "A" : "M");
-    Serial.print("|");
-    Serial.print("R:" + String(MotorState));
-    Serial.print("|");
-    Serial.print("MOff:" + String(ManualOff));
-    Serial.print("|");
-    Serial.print("Distance:" + String(Distance));
-    Serial.print("|");
-    Serial.print("MotoMode:" + String(STATOR_TYPE));
-    Serial.print("|");
-    Serial.print("DistX:" + String(DistanceX));
-    Serial.println();
+    debug("Lv:" + String(value));
+    debug("|");
+    debug(AutoMode ? "A" : "M");
+    debug("|");
+    debug("R:" + String(MotorState));
+    debug("|");
+    debug("MOff:" + String(ManualOff));
+    debug("|");
+    debug("Distance:" + String(Distance));
+    debug("|");
+    debug("MotoMode:" + String(STATOR_TYPE));
+    debug("|");
+    debug("DistX:" + String(DistanceX));
+    debugln();
 }
 
 void buttonEvent()
@@ -106,14 +106,14 @@ void OneTimeRun()
         }
         else
         {
-            tone(buzz, 4500, 1000);
+            tone(buzz, 4500, 300);
             digitalWrite(led, LOW);
             motor_off();
 #if DryRun
             t.stop(dryRun_timer);
 #endif
         }
-        Serial.println("MotorState Changed");
+        debugln("MotorState Changed");
     }
     LastMotorState = MotorState;
     EEPROM.write(LastMotorState_mem, LastMotorState);
@@ -130,7 +130,7 @@ void OneTimeRun()
         if (errorCountState == true)
         {
             PumpOFF_command();
-            Serial.println("ERROR");
+            debugln("ERROR");
             ManualOff = true;
             AutoMode = false;
             EEPROM.write(manualOff_mem, 1);
@@ -149,7 +149,7 @@ void OneTimeRun()
         else
         {
             t.stop(ledBlink);
-            Serial.println("Error State Stop");
+            debugln("Error State Stop");
         }
     }
     LasterrorCountState = errorCountState;

@@ -7,11 +7,7 @@ void readSensor()
       mySensor.add(Distance);
       DistanceX = mySensor.get();
       uint8_t valueX = map(DistanceX, MinDistance, MaxDistance, 100, 0);
-#if level_5
-      value = map(valueX, 0, 100, 0, 20) * 5;
-#else
       value = valueX;
-#endif
    }
    else if (Distance >= MaxDistance)
    {
@@ -68,11 +64,7 @@ void readSensor()
                mySensor.add(Distance);
                DistanceX = mySensor.get();
                uint8_t valueX = map(DistanceX, MinDistance, MaxDistance, 100, 0);
-#if level_5
-               value = map(valueX, 0, 100, 0, 20) * 5;
-#else
                value = valueX;
-#endif
             }
             else if (DistanceX >= MaxDistance)
             {
@@ -88,7 +80,7 @@ void readSensor()
          }
          else
          {
-            Serial.println("Below the lower limit");
+            debugln("Below the lower limit");
             errorCount++;
             if (errorCount > 20)
             {

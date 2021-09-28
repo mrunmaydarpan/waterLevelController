@@ -2,32 +2,33 @@ void StartUp()
 {
     const char *compile_date = __DATE__;
     const char *compile_time = __TIME__;
-    Serial.println(F("Ready......."));
-    Serial.println("SW: " + String(version));
-    Serial.println("DT: " + String(compile_date) + " | " + String(compile_time));
-    Serial.println("MaxDistance: " + String(MaxDistance));
-    Serial.println("MinDistance: " + String(MinDistance));
-    Serial.println("start at: " + String(MotorStartThreshold));
-    Serial.println("ManualOff: " + String(EEPROM.read(manualOff_mem)));
-    Serial.println("MotorState: " + String(EEPROM.read(motorState_mem)));
-    Serial.println("Mode: " + String(AutoMode));
-    Serial.print(F("Starting."));
+    debugln(F("Ready......."));
+    debugln("SW: " + String(version));
+    debugln("DT: " + String(compile_date) + " | " + String(compile_time));
+    debugln("MaxDistance: " + String(MaxDistance));
+    debugln("MinDistance: " + String(MinDistance));
+    debugln("start at: " + String(MotorStartThreshold));
+    debugln("ManualOff: " + String(EEPROM.read(manualOff_mem)));
+    debugln("MotorState: " + String(EEPROM.read(motorState_mem)));
+    debugln("Mode: " + String(AutoMode));
+    debug(F("Starting."));
     lcd.clear();
     lcd.setCursor(11, 0);
     lcd.print("v" + String(version));
     lcd.setCursor(0, 1);
     lcd.print(compile_date);
+    pinMode(buzz, OUTPUT);
     for (int l = 0; l < int(sizeof(brand) - 1); l++)
     {
         lcd.setCursor(l, 0);
         lcd.print(brand[l]);
-        tone(buzz, 4500, 150);
+        // tone(buzz, 4500, 150);
         digitalWrite(led, !digitalRead(led));
-        digitalWrite(debug_led, !digitalRead(debug_led));
-        Serial.print(F("."));
+        debug_led(true);
+        debug(F("."));
         delay(300);
     }
-    Serial.println();
+    debugln();
     delay(500);
     char showVersion[14];
     char showData[16];

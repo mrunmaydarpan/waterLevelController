@@ -1,15 +1,15 @@
-#define version "5.9f"
-#define hardware "3.1"
+#define version "6.1a"
+#define hardware "4.0"
 const char brand[] = "MDtronix";
 
 /*------------function setting-----------------*/
 #define sonar true
-#define DryRun true
-#define level_5 false
+#define DryRun false
 /*---------------------------------------------*/
 
 #define debugData true  //default: true
 #define wifi_test false //default: false
+#define debug_led_state true
 
 #define on_delay 300
 #define off_delay 200
@@ -21,6 +21,20 @@ const char brand[] = "MDtronix";
 #endif
 #if DryRun
 #define DryRunTime 120000
+#endif
+
+#if debugData
+#define debug(x) Serial.print(x)
+#define debugln(x) Serial.println(x)
+#else
+#define debug(x)
+#define debugln(x)
+#endif
+
+#if debug_led_state
+#define debug_led(state) digitalWrite(debug_led_pin, state)
+#else
+#define debug_led(state)
 #endif
 
 #include <JC_Button.h>

@@ -29,24 +29,24 @@ void parseCommand(String com)
             {
                 EEPROM.write(minDistance_mem, 22);
             }
-            Serial.print("minDistance set:");
-            Serial.println(MinDistance);
+            debug("minDistance set:");
+            debugln(MinDistance);
         }
         else if (part1.equals(GET_MAX)) // $maxDistance 220
         {
             int i = part2.toInt();
             EEPROM.write(maxDistance_mem, i);
             MaxDistance = i;
-            Serial.print("maxDistance set:");
-            Serial.println(i);
+            debug("maxDistance set:");
+            debugln(i);
         }
         else if (part1.equals(GET_THRESHOLD))
         {
             int i = part2.toInt();
             EEPROM.write(MotorStartThreshold_mem, i);
             MotorStartThreshold = i;
-            Serial.print("start motor at: ");
-            Serial.println(MotorStartThreshold);
+            debug("start motor at: ");
+            debugln(MotorStartThreshold);
         }
 
         else if (part1.equals(GET_PUMP))
@@ -77,8 +77,8 @@ void parseCommand(String com)
                 }
                 PumpOFF_command();
             }
-            Serial.print("motor: ");
-            Serial.println(i ? "on" : "off");
+            debug("motor: ");
+            debugln(i ? "on" : "off");
         }
         else if (part1.equals("$wifi"))
         {
@@ -87,13 +87,13 @@ void parseCommand(String com)
             {
                 lcd.setCursor(13, 1);
                 lcd.write(3);
-                Serial.println("WiFi Connected");
+                debugln("WiFi Connected");
             }
             else
             {
                 lcd.setCursor(13, 1);
                 lcd.print(" ");
-                Serial.println("WiFi Disconnected");
+                debugln("WiFi Disconnected");
             }
         }
         else if (part1.equals("$stator"))
@@ -101,12 +101,12 @@ void parseCommand(String com)
             int i = part2.toInt();
             STATOR_TYPE = i;
             EEPROM.write(StatorType_mem, i);
-            Serial.print("set stator: ");
-            Serial.println(i);
+            debug("set stator: ");
+            debugln(i);
         }
         else if (part1.equals(GET_SET))
         {
-            Serial.println("get Code");
+            debugln("get Code");
             Setting.println(GET_MIN + String(':') + String(MinDistance));
             Setting.println(GET_MAX + String(':') + String(MaxDistance));
             Setting.println(GET_THRESHOLD + String(':') + String(MotorStartThreshold));
