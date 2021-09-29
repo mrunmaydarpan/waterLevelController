@@ -32,7 +32,7 @@ void parseCommand(String com)
             debug("minDistance set:");
             debugln(MinDistance);
         }
-        else if (part1.equals(GET_MAX)) // $maxDistance 220
+        if (part1.equals(GET_MAX)) // $maxDistance 220
         {
             int i = part2.toInt();
             EEPROM.write(maxDistance_mem, i);
@@ -40,7 +40,7 @@ void parseCommand(String com)
             debug("maxDistance set:");
             debugln(i);
         }
-        else if (part1.equals(GET_THRESHOLD))
+        if (part1.equals(GET_THRESHOLD))
         {
             int i = part2.toInt();
             EEPROM.write(MotorStartThreshold_mem, i);
@@ -49,7 +49,7 @@ void parseCommand(String com)
             debugln(MotorStartThreshold);
         }
 
-        else if (part1.equals(GET_PUMP))
+        if (part1.equals(GET_PUMP))
         {
             int i = part2.toInt();
             if (i == 1)
@@ -80,7 +80,7 @@ void parseCommand(String com)
             debug("motor: ");
             debugln(i ? "on" : "off");
         }
-        else if (part1.equals("$wifi"))
+        if (part1.equals("$wifi"))
         {
             int i = part2.toInt();
             if (i)
@@ -96,7 +96,7 @@ void parseCommand(String com)
                 debugln("WiFi Disconnected");
             }
         }
-        else if (part1.equals("$stator"))
+        if (part1.equals("$type"))
         {
             int i = part2.toInt();
             STATOR_TYPE = i;
@@ -104,7 +104,7 @@ void parseCommand(String com)
             debug("set stator: ");
             debugln(i);
         }
-        else if (part1.equals(GET_SET))
+        if (part1.equals(GET_SET))
         {
             debugln("get Code");
             Setting.println(GET_MIN + String(':') + String(MinDistance));

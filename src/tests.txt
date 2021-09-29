@@ -1,12 +1,12 @@
 ............UNO............
 
-$maxDistance:115
-$minDistance:25
+$maxD:115
+$minD:22
 $startAt:40
 $readData:1
-$Pump:1
-$wifi:0
-$stator:2
+$Pump:0
+$wifi:1
+$stator:1
 ............ESP............
 
 $Level:15
