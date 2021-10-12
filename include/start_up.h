@@ -59,3 +59,19 @@ void StartUp()
     lcd.clear();
     digitalWrite(led, LOW);
 }
+
+void WireTestMode()
+{
+#if TestMode
+    pinMode(selector_1, INPUT_PULLUP);
+    lcd.clear();
+    while (digitalRead(selector_1) == LOW)
+    {
+        lcd.print("WIRE TEST MODE");
+        pinMode(EchoPin, OUTPUT);
+        pinMode(TriggerPin, OUTPUT);
+        digitalWrite(EchoPin, HIGH);
+        digitalWrite(TriggerPin, HIGH);
+    }
+#endif
+}

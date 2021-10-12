@@ -66,6 +66,14 @@ void setup()
 {
   Serial.begin(9600);
   mySerial.begin(9600);
+  lcd.init();
+  lcd.backlight();
+  lcd.createChar(0, BlinkUp);
+  lcd.createChar(1, BlinkDown);
+  lcd.createChar(2, ManualOff_char);
+  lcd.createChar(3, network_icon);
+  WireTestMode();
+
 #if sonar
 #else
   sensorSerial.begin(9600);
@@ -87,14 +95,8 @@ void setup()
   {
     AutoMode = false;
   }
-  lcd.init();
-  lcd.backlight();
-  lcd.createChar(0, BlinkUp);
-  lcd.createChar(1, BlinkDown);
-  lcd.createChar(2, ManualOff_char);
-  lcd.createChar(3, network_icon);
-  StartUp();
 
+  StartUp();
   if (MotorState == true && ManualOff == false && AutoMode == true)
   {
     debugln("turning motor on");

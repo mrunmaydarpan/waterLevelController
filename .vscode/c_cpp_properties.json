@@ -21,6 +21,12 @@
                 "/home/mrunmay/.platformio/packages/framework-arduino-avr/cores/arduino",
                 "/home/mrunmay/.platformio/packages/framework-arduino-avr/variants/standard",
                 "/home/mrunmay/Documents/waterLevelController/.pio/libdeps/uno/Ultrasonic_ID1507/src",
+                "/home/mrunmay/.platformio/lib/JC_Button/src",
+                "/home/mrunmay/.platformio/lib/LiquidCrystal_I2C",
+                "/home/mrunmay/.platformio/lib/Smoothed/src",
+                "/home/mrunmay/.platformio/lib/Timer",
+                "/home/mrunmay/.platformio/lib/Ultrasonic/src",
+                "/home/mrunmay/.platformio/lib/Ultrasonic_ID1507/src",
                 "/home/mrunmay/.platformio/packages/framework-arduino-avr/libraries/HID/src",
                 "/home/mrunmay/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
                 ""
@@ -41,13 +47,19 @@
                     "/home/mrunmay/.platformio/packages/framework-arduino-avr/cores/arduino",
                     "/home/mrunmay/.platformio/packages/framework-arduino-avr/variants/standard",
                     "/home/mrunmay/Documents/waterLevelController/.pio/libdeps/uno/Ultrasonic_ID1507/src",
+                    "/home/mrunmay/.platformio/lib/JC_Button/src",
+                    "/home/mrunmay/.platformio/lib/LiquidCrystal_I2C",
+                    "/home/mrunmay/.platformio/lib/Smoothed/src",
+                    "/home/mrunmay/.platformio/lib/Timer",
+                    "/home/mrunmay/.platformio/lib/Ultrasonic/src",
+                    "/home/mrunmay/.platformio/lib/Ultrasonic_ID1507/src",
                     "/home/mrunmay/.platformio/packages/framework-arduino-avr/libraries/HID/src",
                     "/home/mrunmay/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
                     ""
                 ]
             },
             "defines": [
-                "PLATFORMIO=50200",
+                "PLATFORMIO=50201",
                 "ARDUINO_AVR_UNO",
                 "F_CPU=16000000L",
                 "ARDUINO_ARCH_AVR",

@@ -4,6 +4,7 @@
 #define buzz A0
 #define Relay_ON 12
 #define Relay_OFF 11
+// #define Starting_capacitor 
 #define debug_led_pin 13
 #define selector_1 5
 #define selector_2 6

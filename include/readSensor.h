@@ -8,6 +8,7 @@ void readSensor()
       DistanceX = mySensor.get();
       uint8_t valueX = map(DistanceX, MinDistance, MaxDistance, 100, 0);
       value = valueX;
+      errorCount = 0;
    }
    else if (Distance >= MaxDistance)
    {
@@ -20,7 +21,7 @@ void readSensor()
    if (Distance == 0 || Distance >= MaxDistance + 10) //if Error
    {
       errorCount++;
-      if (errorCount > 20)
+      if (errorCount > 30)
       {
          errorCountState = true;
          errorCount = 1;

@@ -10,9 +10,10 @@ const char brand[] = "MDtronix";
 #define debugData true  //default: true
 #define wifi_test false //default: false
 #define debug_led_state true
+#define TestMode false
 
 #define on_delay 300
-#define off_delay 200
+#define off_delay 300
 
 #if wifi_test
 #define Setting Serial
