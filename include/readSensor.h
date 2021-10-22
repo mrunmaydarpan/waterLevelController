@@ -2,15 +2,15 @@ void readSensor()
 {
 #if sonar
    Distance = Sonar.read();
+   mySensor.add(Distance);
+   DistanceX = mySensor.get();
    if (Distance <= MaxDistance && Distance >= MinDistance)
    {
-      mySensor.add(Distance);
-      DistanceX = mySensor.get();
       uint8_t valueX = map(DistanceX, MinDistance, MaxDistance, 100, 0);
       value = valueX;
       errorCount = 0;
    }
-   else if (Distance >= MaxDistance)
+   else if (DistanceX >= MaxDistance)
    {
       value = 0;
    }
@@ -18,7 +18,7 @@ void readSensor()
    {
       value = 100;
    }
-   if (Distance == 0 || Distance >= MaxDistance + 10) //if Error
+   if (Distance == 0 || Distance >= MaxDistance + 20) // if Error
    {
       errorCount++;
       if (errorCount > 30)
@@ -60,18 +60,18 @@ void readSensor()
          if (Distance > 30)
          {
             Distance /= 10;
+            mySensor.add(Distance);
+            DistanceX = mySensor.get();
             if (Distance <= MaxDistance && Distance >= MinDistance)
             {
-               mySensor.add(Distance);
-               DistanceX = mySensor.get();
-               uint8_t valueX = map(DistanceX, MinDistance, MaxDistance, 100, 0);
-               value = valueX;
+               uint8_t value = map(DistanceX, MinDistance, MaxDistance, 100, 0);
+               // value = valueX;
             }
             else if (DistanceX >= MaxDistance)
             {
                value = 0;
             }
-            else if (DistanceX <= MinDistance)
+            else if (Distance <= MinDistance)
             {
                value = 100;
             }
@@ -109,7 +109,7 @@ void readSensor()
    {
       value = 100;
    }
-   if (value <= MotorStartThreshold && ManualOff == false && AutoMode == true && Distance != 0 && value <= 90)
+   if (value <= MotorStartThreshold && ManualOff == false && AutoMode == true && Distance != 0)
    {
       PumpON_command();
    }

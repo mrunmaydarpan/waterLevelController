@@ -47,6 +47,10 @@ void buttonEvent()
             }
             PumpOFF_command();
         }
+#if LCD_BL_OFF
+        lcd.backlight();
+        LCD_t = t.after(3000, lcd_off);
+#endif
     }
     else if (button.pressedFor(LONG_PRESS))
     {
@@ -70,31 +74,10 @@ void buttonEvent()
     }
 }
 
-// void selectorMode()
-// {
-//     pinMode(selector_1, INPUT_PULLUP);
-//     pinMode(selector_2, INPUT_PULLUP);
-//     pinMode(selector_3, INPUT_PULLUP);
-
-//     if (digitalRead(selector_1) == LOW)
-//     {
-//         STATOR_TYPE = 1; // Normal Mode
-//     }
-//     else if (digitalRead(selector_2) == LOW)
-//     {
-//         STATOR_TYPE = 2; // Stator Mode
-//     }
-//     else if (digitalRead(selector_3) == LOW)
-//     {
-//         STATOR_TYPE = 3;
-//     }
-// }
-
 void OneTimeRun()
 {
     if (MotorState != LastMotorState)
     {
-        Setting.println(SEND_PUMP + String(MotorState));
         if (MotorState == true)
         {
             motor_on();
@@ -106,8 +89,7 @@ void OneTimeRun()
         }
         else
         {
-            tone(buzz, 4500, 300);
-            digitalWrite(led, LOW);
+            // tone(buzz, 4500, 300);
             motor_off();
 #if DryRun
             t.stop(dryRun_timer);
@@ -126,7 +108,6 @@ void OneTimeRun()
     if (errorCountState != LasterrorCountState)
     {
         lcd.clear();
-        Setting.println(SEND_ERROR + String(errorCountState));
         if (errorCountState == true)
         {
             PumpOFF_command();
@@ -175,8 +156,4 @@ void update_lcd()
         lcd.write(1);
         blink_state = true;
     }
-    Setting.println(SEND_VALUE + String(value));
-    Setting.println(SEND_DISTANCE + String(Distance));
-    Setting.println(SEND_MODE + String(AutoMode));
-    Setting.println(SEND_ERROR + String(errorCountState));
 }

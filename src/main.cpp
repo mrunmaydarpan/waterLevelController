@@ -1,4 +1,5 @@
 #include <setting.h>
+#include <includes.h>
 
 #define motorState_mem 1
 #define maxDistance_mem 2
@@ -14,8 +15,10 @@ int MotorStartThreshold;
 int MaxDistance, value, LastValue;
 uint8_t STATOR_TYPE;
 uint8_t errorCount;
-uint8_t okCount;
+// uint8_t okCount;
 uint8_t ledBlink;
+uint8_t LCD_t;
+uint8_t RELAY_OFF;
 int Distance, DistanceX;
 #if DryRun
 int dryRun_timer;
@@ -65,14 +68,12 @@ byte network_icon[] = {
 void setup()
 {
   Serial.begin(9600);
-  mySerial.begin(9600);
   lcd.init();
   lcd.backlight();
   lcd.createChar(0, BlinkUp);
   lcd.createChar(1, BlinkDown);
   lcd.createChar(2, ManualOff_char);
   lcd.createChar(3, network_icon);
-  WireTestMode();
 
 #if sonar
 #else
@@ -84,6 +85,7 @@ void setup()
   pinMode(Relay_ON, OUTPUT);
   pinMode(Relay_OFF, OUTPUT);
   pinMode(led, OUTPUT);
+  pinMode(buzz, OUTPUT);
 #if debug_led_state
   pinMode(debug_led_pin, OUTPUT);
 #endif
@@ -112,12 +114,12 @@ void setup()
 #if debugData
   t.every(1000, Debug);
 #endif
-  Setting.println(GET_MIN + String(':') + String(MinDistance));
-  Setting.println(GET_MAX + String(':') + String(MaxDistance));
-  Setting.println(GET_THRESHOLD + String(':') + String(MotorStartThreshold));
-  Setting.println(SEND_PUMP + String(MotorState));
+
   mySensor.begin(SMOOTHED_AVERAGE, 50);
-  mySensor.clear();
+  // mySensor.clear();
+#if LCD_BL_OFF
+  LCD_t = t.after(5000, lcd_off);
+#endif
 }
 
 void loop()
@@ -128,7 +130,6 @@ void loop()
   lcdDefault();
   buttonEvent();
   OneTimeRun();
-  setting();
   if (ManualOff == true)
   {
     lcd.setCursor(14, 1);

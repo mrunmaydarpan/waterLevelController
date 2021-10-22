@@ -1,10 +1,9 @@
 void StartUp()
 {
     const char *compile_date = __DATE__;
-    const char *compile_time = __TIME__;
     debugln(F("Ready......."));
     debugln("SW: " + String(version));
-    debugln("DT: " + String(compile_date) + " | " + String(compile_time));
+    debugln("DT: " + String(compile_date));
     debugln("MaxDistance: " + String(MaxDistance));
     debugln("MinDistance: " + String(MinDistance));
     debugln("start at: " + String(MotorStartThreshold));
@@ -58,20 +57,4 @@ void StartUp()
     delay(2000);
     lcd.clear();
     digitalWrite(led, LOW);
-}
-
-void WireTestMode()
-{
-#if TestMode
-    pinMode(selector_1, INPUT_PULLUP);
-    lcd.clear();
-    while (digitalRead(selector_1) == LOW)
-    {
-        lcd.print("WIRE TEST MODE");
-        pinMode(EchoPin, OUTPUT);
-        pinMode(TriggerPin, OUTPUT);
-        digitalWrite(EchoPin, HIGH);
-        digitalWrite(TriggerPin, HIGH);
-    }
-#endif
 }
