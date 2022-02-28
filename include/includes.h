@@ -10,37 +10,34 @@
 #define debugln(x)
 #endif
 
-#if debug_led_state
-#define debug_led(state) digitalWrite(debug_led_pin, state)
-#else
-#define debug_led(state)
-#endif
-
-#if Buzzer
-#define Buzz(pin, STATE) digitalWrite(pin,STATE)
-#else
-#define Buzz(pin, STATE)
-#endif
-
+#include <ESP8266WiFi.h>
+#include <ESPAsyncWebServer.h>
+#include <ESPAsyncTCP.h>
+#include <AsyncElegantOTA.h>
+#include <DNSServer.h>
+// #include <ArduinoHA.h>
 #include <JC_Button.h>
 #include <EEPROM.h>
 #include <LiquidCrystal_I2C.h>
 #include <SoftwareSerial.h>
 #include <Timer.h>
-#if sonar
+#if SENSOR_1
 #include <Ultrasonic.h>
 #endif
 #include <Smoothed.h>
-#include <wifiCom.h>
 #include <pins.h>
 
-#if sonar
+#if SENSOR_1
 Ultrasonic Sonar(TriggerPin, EchoPin);
-#else
+#elif SENSOR_2
 SoftwareSerial sensorSerial(sensorRX, sensorTX);
+#elif SENSOR_3
 #endif
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 Button button(PB);
-Button modeButton(Mode);
+Button modeButton(_Mode);
 Timer t;
 Smoothed<uint8_t> mySensor;
+AsyncWebServer server(80);
+DNSServer dns;
+WiFiClient client;

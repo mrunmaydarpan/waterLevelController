@@ -25,6 +25,7 @@ void Debug()
     debug("MotoMode:" + String(STATOR_TYPE));
     debug("|");
     debug("DistX:" + String(DistanceX));
+    debug("|");
     debugln();
 }
 
@@ -38,19 +39,17 @@ void buttonEvent()
             {
                 ManualOff = false;
                 EEPROM.write(manualOff_mem, 0);
+                EEPROM.commit();
             }
             else
             {
                 ManualOff = true;
                 AutoMode = false;
                 EEPROM.write(manualOff_mem, 1);
+                EEPROM.commit();
             }
             PumpOFF_command();
         }
-#if LCD_BL_OFF
-        lcd.backlight();
-        LCD_t = t.after(3000, lcd_off);
-#endif
     }
     else if (button.pressedFor(LONG_PRESS))
     {
@@ -58,6 +57,7 @@ void buttonEvent()
         DryRunState = false;
         errorCountState = false;
         EEPROM.write(manualOff_mem, 0);
+        EEPROM.commit();
         PumpON_command();
         if (AutoMode == false && modeButton.isPressed())
         {
@@ -89,7 +89,7 @@ void OneTimeRun()
         }
         else
         {
-            // tone(buzz, 4500, 300);
+            tone(buzz, 4500, 300);
             motor_off();
 #if DryRun
             t.stop(dryRun_timer);
@@ -99,6 +99,7 @@ void OneTimeRun()
     }
     LastMotorState = MotorState;
     EEPROM.write(LastMotorState_mem, LastMotorState);
+    EEPROM.commit();
 
     if (value != LastValue)
     {
@@ -115,6 +116,7 @@ void OneTimeRun()
             ManualOff = true;
             AutoMode = false;
             EEPROM.write(manualOff_mem, 1);
+            EEPROM.commit();
             lcd.setCursor(3, 1);
             if (DryRunState)
             {

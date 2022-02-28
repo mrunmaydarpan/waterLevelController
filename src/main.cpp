@@ -1,3 +1,5 @@
+#define SW_TEST true
+
 #include <setting.h>
 #include <includes.h>
 
@@ -15,15 +17,16 @@ int MotorStartThreshold;
 int MaxDistance, value, LastValue;
 uint8_t STATOR_TYPE;
 uint8_t errorCount;
-// uint8_t okCount;
 uint8_t ledBlink;
-uint8_t LCD_t;
-uint8_t RELAY_OFF;
 int Distance, DistanceX;
 #if DryRun
 int dryRun_timer;
 #endif
-uint8_t dryRun_Distance(0), dryRun_LastDistance(0);
+uint8_t dryRun_Distance(0),
+    dryRun_LastDistance(0);
+
+extern const char index_html[];
+const byte DNS_PORT = 53;
 
 const unsigned long LONG_PRESS(2000);
 
@@ -34,6 +37,7 @@ bool blink_state = false;
 bool errorCountState, LasterrorCountState;
 bool WiFiState;
 bool DryRunState;
+long duration;
 
 String Command;
 unsigned char data[4] = {};
@@ -67,6 +71,7 @@ byte network_icon[] = {
 
 void setup()
 {
+  EEPROM.begin(32);
   Serial.begin(9600);
   lcd.init();
   lcd.backlight();
@@ -75,21 +80,22 @@ void setup()
   lcd.createChar(2, ManualOff_char);
   lcd.createChar(3, network_icon);
 
-#if sonar
-#else
+#if SENSOR_1
+#elif SENSOR_2
   sensorSerial.begin(9600);
+#elif SENSOR_3
+  pinMode(TRIGGER_PIN, OUTPUT);
+  pinMode(PWM_OUTPUT_PIN, INPUT);
 #endif
   ReadMem();
   button.begin();
   modeButton.begin();
-  pinMode(Relay_ON, OUTPUT);
-  pinMode(Relay_OFF, OUTPUT);
   pinMode(led, OUTPUT);
   pinMode(buzz, OUTPUT);
-#if debug_led_state
-  pinMode(debug_led_pin, OUTPUT);
-#endif
-  if (ManualOff == false && digitalRead(Mode) == LOW)
+  pinMode(Relay_ON, OUTPUT);
+  pinMode(Relay_ON_2, OUTPUT);
+  pinMode(Relay_OFF, OUTPUT);
+  if (ManualOff == false && digitalRead(_Mode) == LOW)
   {
     AutoMode = true;
   }
@@ -97,7 +103,6 @@ void setup()
   {
     AutoMode = false;
   }
-
   StartUp();
   if (MotorState == true && ManualOff == false && AutoMode == true)
   {
@@ -117,9 +122,11 @@ void setup()
 
   mySensor.begin(SMOOTHED_AVERAGE, 50);
   // mySensor.clear();
-#if LCD_BL_OFF
-  LCD_t = t.after(5000, lcd_off);
-#endif
+  String ssid = "WaterTank-Setting-";
+  ssid += String(ESP.getChipId()).c_str();
+  WiFi.mode(WIFI_AP);
+  WiFi.softAP(ssid, "12345678");
+  setting_code();
 }
 
 void loop()
@@ -130,6 +137,7 @@ void loop()
   lcdDefault();
   buttonEvent();
   OneTimeRun();
+  dns.processNextRequest();
   if (ManualOff == true)
   {
     lcd.setCursor(14, 1);

@@ -1,6 +1,6 @@
 void readSensor()
 {
-#if sonar
+#if SENSOR_1
    Distance = Sonar.read();
    mySensor.add(Distance);
    DistanceX = mySensor.get();
@@ -20,12 +20,16 @@ void readSensor()
    }
    if (Distance == 0 || Distance >= MaxDistance + 20) // if Error
    {
+#if SW_TEST
+      value = 40;
+#else
       errorCount++;
       if (errorCount > 30)
       {
          errorCountState = true;
          errorCount = 1;
       }
+#endif
    }
 //    else
 //    {
@@ -41,7 +45,7 @@ void readSensor()
 //          errorCountState = false;
 // #endif
 //    }
-#else
+#elif SENSOR_2
    do
    {
       for (int i = 0; i < 4; i++)
@@ -92,13 +96,56 @@ void readSensor()
       }
       else // if errors
       {
+#if SW_TEST
+         value = 40;
+#else
          errorCount++;
          if (errorCount > 20)
          {
             errorCountState = true;
             errorCount = 1;
          }
+#endif
       }
+   }
+#elif SENSOR_3
+   digitalWrite(TRIGGER_PIN, LOW);
+   delayMicroseconds(5);
+   digitalWrite(TRIGGER_PIN, HIGH);
+   delayMicroseconds(100);
+   digitalWrite(TRIGGER_PIN, LOW);
+   duration = pulseIn(PWM_OUTPUT_PIN, HIGH);
+
+   Distance = duration;
+   Distance = Distance / 58;
+   mySensor.add(Distance);
+   DistanceX = mySensor.get();
+   if (Distance <= MaxDistance && Distance >= MinDistance)
+   {
+      uint8_t valueX = map(DistanceX, MinDistance, MaxDistance, 100, 0);
+      value = valueX;
+      errorCount = 0;
+   }
+   else if (DistanceX >= MaxDistance)
+   {
+      value = 0;
+   }
+   else if (DistanceX <= MinDistance)
+   {
+      value = 100;
+   }
+   if (Distance == 0 || Distance > 500) // if Error
+   {
+#if SW_TEST
+      value = 40;
+#else
+      errorCount++;
+      if (errorCount > 30)
+      {
+         errorCountState = true;
+         errorCount = 1;
+      }
+#endif
    }
 #endif
    if (value < 0)
@@ -113,7 +160,7 @@ void readSensor()
    {
       PumpON_command();
    }
-   else if (Distance < MinDistance && Distance != 0)
+   else if (DistanceX < MinDistance && Distance != 0)
    {
       PumpOFF_command();
    }
